@@ -1,0 +1,41 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "com.skcc.board",
+      "nativeLanguage": "ko"
+    },
+    "jhipsterVersion": "6.9.1",
+    "applicationType": "microservice",
+    "baseName": "board",
+    "packageName": "com.skcc.board",
+    "packageFolder": "com/skcc/board",
+    "serverPort": "8084",
+    "authenticationType": "jwt",
+    "cacheProvider": "hazelcast",
+    "enableHibernateCache": false,
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "h2Memory",
+    "prodDatabaseType": "mysql",
+    "searchEngine": false,
+    "messageBroker": "kafka",
+    "serviceDiscoveryType": "eureka",
+    "buildTool": "maven",
+    "enableSwaggerCodegen": false,
+    "jwtSecretKey": "MDI5ZDQ3Y2Y5N2Y4YTEwYWE5MDljYTkyZjg1OWYxNWE5OGNlMGFmNmY4NTE4NTBlNmI1MWRlMTU1ZDdlYjgwZTY5NWE2NzRjN2U2YTFiYmRiNjczYmU5MWNjOTkwMDE3MjNiZjI4OGJkZWE4ZGU0MmY2YzlmOThhYzk2NTIyMTk=",
+    "embeddableLaunchScript": false,
+    "creationTimestamp": 1603772995425,
+    "testFrameworks": ["gatling"],
+    "jhiPrefix": "jhi",
+    "entitySuffix": "",
+    "dtoSuffix": "DTO",
+    "otherModules": [],
+    "enableTranslation": true,
+    "clientPackageManager": "npm",
+    "nativeLanguage": "ko",
+    "languages": ["ko", "en"],
+    "blueprints": [],
+    "skipClient": true,
+    "skipUserManagement": true
+  }
+}
