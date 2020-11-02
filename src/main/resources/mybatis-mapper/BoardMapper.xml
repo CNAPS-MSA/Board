@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.skcc.board.repository.BoardMapper">
+    <select id="selectBoardById" resultType="Board">
+        SELECT * FROM board WHERE id = #{id}
+    </select>
+    <select id="selectAllBoard" resultType="Board">
+        SELECT * FROM board
+    </select>
+    <insert id="insertBoard" parameterType="Board">
+        INSERT INTO board (id, title, content, writer, createdDate, category, hit)
+        VALUES ( #{id}, #{title}, #{content}, #{writer}, #{createdDate}, #{category}, #{hit})
+    </insert>
+</mapper>

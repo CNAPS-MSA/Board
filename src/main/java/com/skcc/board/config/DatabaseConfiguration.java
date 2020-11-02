@@ -2,8 +2,14 @@ package com.skcc.board.config;
 
 import io.github.jhipster.config.JHipsterConstants;
 import io.github.jhipster.config.h2.H2ConfigurationHelper;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.mapstruct.Mapper;
+import org.mybatis.spring.SqlSessionFactoryBean;
+import org.mybatis.spring.SqlSessionTemplate;
+import org.mybatis.spring.annotation.MapperScan;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
@@ -13,21 +19,28 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import javax.sql.DataSource;
 import java.sql.SQLException;
 
 @Configuration
 @EnableJpaRepositories("com.skcc.board.repository")
 @EnableJpaAuditing(auditorAwareRef = "springSecurityAuditorAware")
 @EnableTransactionManagement
+@MapperScan(value = "com.skcc.board.repository", annotationClass = Mapper.class, sqlSessionFactoryRef = "sqlSessionFactory")
 public class DatabaseConfiguration {
 
     private final Logger log = LoggerFactory.getLogger(DatabaseConfiguration.class);
 
     private final Environment env;
 
-    public DatabaseConfiguration(Environment env) {
+    private final ApplicationContext applicationContext;
+
+    public DatabaseConfiguration(Environment env, ApplicationContext applicationContext) {
         this.env = env;
+        this.applicationContext = applicationContext;
     }
+
+
 
     /**
      * Open the TCP port for the H2 database, so it is available remotely.
@@ -55,5 +68,20 @@ public class DatabaseConfiguration {
             }
         }
         return String.valueOf(port);
+    }
+
+
+    @Bean
+    public SqlSessionFactory sqlSessionFactory(DataSource dataSource) throws Exception {
+        SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
+        sqlSessionFactoryBean.setDataSource(dataSource);
+        sqlSessionFactoryBean.setTypeAliasesPackage("com.skcc.board.domain");
+        sqlSessionFactoryBean.setMapperLocations(applicationContext.getResources("classpath:mybatis-mapper/**/*.xml"));
+        return sqlSessionFactoryBean.getObject();
+    }
+
+    @Bean
+    public SqlSessionTemplate sqlSessionTemplate(SqlSessionFactory sqlSessionFactory) {
+        return new SqlSessionTemplate(sqlSessionFactory);
     }
 }
