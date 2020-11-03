@@ -6,10 +6,10 @@ import java.util.List;
 
 public interface BoardService {
 
-    public Board findBoardById(Long id);
+    Board findBoardById(Long id);
 
-    public List<Board> findAllBoard();
+    List<Board> findAllBoard();
 
-    public void addNewBoard(Board board);
+    void addNewBoard(Board board);
 
 }
