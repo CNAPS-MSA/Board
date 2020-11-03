@@ -10,7 +10,7 @@
         SELECT * FROM board
     </select>
     <insert id="insertBoard" parameterType="Board">
-        INSERT INTO board (id, title, content, writer, createdDate, category, hit)
-        VALUES ( #{id}, #{title}, #{content}, #{writer}, #{createdDate}, #{category}, #{hit})
+        INSERT INTO board ( title, content, writer, createdDate, category, hit)
+        VALUES (#{title}, #{content}, #{writer}, #{createdDate}, #{category}, #{hit})
     </insert>
 </mapper>
