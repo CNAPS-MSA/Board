@@ -1,18 +1,16 @@
 package com.skcc.board.domain;
 
-import com.skcc.board.domain.enumeration.Category;
 import lombok.Data;
 
 import java.time.LocalDateTime;
 
 @Data
-public class Board {
+public class Comment {
     private Long id;
-    private String title;
     private String content;
     private String writerName;
     private Long writerId;
     private LocalDateTime createdDate;
-    private Category category;
-    private int hit;
+    private Long boardId;
+
 }

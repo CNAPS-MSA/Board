@@ -33,7 +33,8 @@ public class DemoApplicationTest {
         board.setCreatedDate(LocalDateTime.now());
         board.setHit(123);
         board.setTitle("test title");
-        board.setWriter_id(1L);
+        board.setWriterName("test writer");
+        board.setWriterId(1L);
         boardService.addNewBoard(board);
     }
     @Test
