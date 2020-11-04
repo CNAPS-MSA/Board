@@ -33,12 +33,11 @@ public class DemoApplicationTest {
         board.setCreatedDate(LocalDateTime.now());
         board.setHit(123);
         board.setTitle("test title");
-        board.setWriter("test writer");
+        board.setWriter_id(1L);
         boardService.addNewBoard(board);
     }
     @Test
     public void boardTest() {
-
         Board findBoard = boardService.findBoardById(1L);
         assertThat(board.getContent(), is(equalTo(findBoard.getContent())));
         System.out.println(findBoard);

@@ -1,5 +1,6 @@
 package com.skcc.board.web.rest;
 
+import com.github.pagehelper.Page;
 import com.skcc.board.domain.Board;
 import com.skcc.board.service.BoardService;
 import com.skcc.board.web.rest.errors.BadRequestAlertException;
@@ -38,9 +39,9 @@ public class BoardResource {
     }
 
     @GetMapping("/board")
-    public ResponseEntity<List<Board>> findBoard(){
+    public ResponseEntity<List<Board>> findBoard(@RequestParam(value = "pageNo")int pageNo, @RequestParam(value = "pageSize") int pageSize){
         log.debug("REST request to find Books");
-        List<Board> boards  = boardService.findAllBoard();
+        List<Board> boards  = boardService.findAllBoard(pageNo, pageSize);
         return ResponseEntity.ok().body(boards);
     }
 }

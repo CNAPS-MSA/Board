@@ -1,5 +1,7 @@
 package com.skcc.board.service.impl;
 
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
 import com.skcc.board.domain.Board;
 import com.skcc.board.repository.BoardMapper;
 import com.skcc.board.service.BoardService;
@@ -26,7 +28,8 @@ public class BoardServiceImpl implements BoardService {
     }
 
     @Override
-    public List<Board> findAllBoard() {
+    public Page<Board> findAllBoard(int pageNo, int pageSize) {
+        PageHelper.startPage(pageNo, pageSize);
         return boardMapper.selectAllBoard();
     }
 
