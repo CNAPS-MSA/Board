@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -31,6 +32,7 @@ public class BoardServiceImpl implements BoardService {
 
     @Override
     public void addNewBoard(Board board) {
+        board.setCreatedDate(LocalDateTime.now());
         boardMapper.insertBoard(board);
     }
 }
