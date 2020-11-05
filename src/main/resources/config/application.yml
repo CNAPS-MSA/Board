@@ -220,3 +220,7 @@ pagehelper:
   reasonable: true
   support-methods-arguments: true
 # application:
+mybatis:
+  config-location: classpath:config/mybatis-config.xml
+  configuration:
+    map-underscore-to-camel-case: true
