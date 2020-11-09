@@ -12,4 +12,5 @@ public interface BoardMapper {
     Board selectBoardById(Long id);
     Page<Board> selectAllBoard();
     void insertBoard(Board board);
+    void updateBoard(Board board);
 }

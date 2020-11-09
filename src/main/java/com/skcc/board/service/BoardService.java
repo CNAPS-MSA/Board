@@ -2,6 +2,7 @@ package com.skcc.board.service;
 
 import com.github.pagehelper.Page;
 import com.skcc.board.domain.Board;
+import com.skcc.board.domain.Comment;
 
 import java.util.List;
 
@@ -11,6 +12,13 @@ public interface BoardService {
 
     Page<Board> findAllBoard(int pageNo, int pageSize);
 
-    void addNewBoard(Board board);
+    Board registerNewBoard(Board board);
+
+    Board editBoard(Board board);
+
+
+
+
+
 
 }

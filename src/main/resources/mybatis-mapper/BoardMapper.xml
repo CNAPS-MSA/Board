@@ -4,13 +4,16 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.skcc.board.repository.BoardMapper">
     <select id="selectBoardById" resultType="Board">
-        SELECT * FROM board WHERE id = #{id}
+        SELECT board.id, board.title, board.content, board.writer_name, board.writer_id, board.created_date, board.category, board.hit FROM board WHERE id = #{id}
     </select>
     <select id="selectAllBoard" resultType="Board">
-        SELECT * FROM board
+        SELECT board.id, board.title, board.writer_name, board.created_date, board.category, board.hit FROM board
     </select>
-    <insert id="insertBoard" parameterType="Board">
+    <insert id="insertBoard" useGeneratedKeys="true" keyProperty="id" parameterType="Board">
         INSERT INTO board ( title, content, writer_name, writer_id, created_date, category, hit)
         VALUES (#{title}, #{content}, #{writerName},#{writerId}, #{createdDate}, #{category}, #{hit})
     </insert>
+    <update id="updateBoard" parameterType="Board">
+        UPDATE board set title=#{title}, content=#{content}, category=#{category} where id=#{id}
+    </update>
 </mapper>
