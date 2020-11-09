@@ -1,8 +1,10 @@
 package com.skcc.board;
 
+import com.github.pagehelper.Page;
 import com.skcc.board.domain.Board;
 import com.skcc.board.domain.Comment;
 import com.skcc.board.domain.enumeration.Category;
+import com.skcc.board.repository.BoardMapper;
 import com.skcc.board.service.BoardService;
 import com.skcc.board.service.CommentService;
 import org.junit.Before;
@@ -75,6 +77,17 @@ public class DemoApplicationTest {
         assertThat(board.getId(), is(equalTo(findBoard.getId())));
         System.out.println(findBoard);
 
+        Page<Board> findBoardByCategory = boardService.findBoardsByCategory(0,1,Category.NORMAL);
+
+        for(Board b: findBoardByCategory){
+            System.out.println(b);
+        }
+
+
+    }
+
+    @Test
+    public void commentTest(){
         List<Comment> commentList = commentService.findCommentByBoardId(board.getId());
         for(Comment c:commentList){
             System.out.println(c);

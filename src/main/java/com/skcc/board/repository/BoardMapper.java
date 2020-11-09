@@ -3,6 +3,7 @@ package com.skcc.board.repository;
 import com.github.pagehelper.Page;
 import com.skcc.board.domain.Board;
 
+import com.skcc.board.domain.enumeration.Category;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
@@ -13,4 +14,5 @@ public interface BoardMapper {
     Page<Board> selectAllBoard();
     void insertBoard(Board board);
     void updateBoard(Board board);
+    Page<Board> selectBoardByCategory(Category category);
 }

@@ -4,6 +4,7 @@ import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.skcc.board.domain.Board;
 import com.skcc.board.domain.Comment;
+import com.skcc.board.domain.enumeration.Category;
 import com.skcc.board.repository.BoardMapper;
 import com.skcc.board.service.BoardService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,6 +53,12 @@ public class BoardServiceImpl implements BoardService {
         return boardMapper.selectBoardById(board.getId());
     }
 
+    @Override
+    public Page<Board> findBoardsByCategory(int pageNo, int pageSize, Category category) {
+        PageHelper.startPage(pageNo, pageSize);
+        return boardMapper.selectBoardByCategory(category);
+
+    }
 
 
 }

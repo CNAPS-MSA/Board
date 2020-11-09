@@ -2,6 +2,7 @@ package com.skcc.board.web.rest;
 
 import com.github.pagehelper.Page;
 import com.skcc.board.domain.Board;
+import com.skcc.board.domain.enumeration.Category;
 import com.skcc.board.service.BoardService;
 import com.skcc.board.web.rest.errors.BadRequestAlertException;
 
@@ -43,9 +44,23 @@ public class BoardResource {
     }
 
     @GetMapping("/board")
-    public ResponseEntity<List<Board>> findBoard(@RequestParam(value = "pageNo")int pageNo, @RequestParam(value = "pageSize") int pageSize){
+    public ResponseEntity<List<Board>> findAllBoard(@RequestParam(value = "page")int pageNo, @RequestParam(value = "size") int pageSize){
         log.debug("REST request to find Books");
         List<Board> boards  = boardService.findAllBoard(pageNo, pageSize);
         return ResponseEntity.ok().body(boards);
+    }
+
+    @GetMapping("/board/{boardId}")
+    public ResponseEntity<Board> findBoard(@PathVariable Long boardId){
+        log.debug("REST request to find Book: {bookId}");
+        Board board  = boardService.findBoardById(boardId);
+        return ResponseEntity.ok().body(board);
+    }
+
+    @GetMapping("/board/{category}")
+    public ResponseEntity<List<Board>> findBoardByCategory(@PathVariable Category category, @RequestParam(value = "page")int pageNo, @RequestParam(value = "size") int pageSize ){
+        log.debug("REST request to find Book: {bookId}");
+        List<Board> result = boardService.findBoardsByCategory(pageNo, pageSize,category);
+        return ResponseEntity.ok().body(result);
     }
 }
