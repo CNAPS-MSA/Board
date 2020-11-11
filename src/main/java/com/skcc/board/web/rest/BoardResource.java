@@ -57,8 +57,8 @@ public class BoardResource {
         return ResponseEntity.ok().body(board);
     }
 
-    @GetMapping("/board/{category}")
-    public ResponseEntity<List<Board>> findBoardByCategory(@PathVariable Category category, @RequestParam(value = "page")int pageNo, @RequestParam(value = "size") int pageSize ){
+    @GetMapping("/board/category/{category}")
+    public ResponseEntity<List<Board>> findBoardByCategory(@PathVariable("category") Category category, @RequestParam(value = "page")int pageNo, @RequestParam(value = "size") int pageSize ){
         log.debug("REST request to find Book: {bookId}");
         List<Board> result = boardService.findBoardsByCategory(pageNo, pageSize,category);
         return ResponseEntity.ok().body(result);

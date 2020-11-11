@@ -7,7 +7,7 @@
         SELECT board.id, board.title, board.content, board.writer_name, board.writer_id, board.created_date, board.category, board.hit FROM board WHERE id = #{id}
     </select>
     <select id="selectAllBoard" resultType="Board">
-        SELECT board.id, board.title, board.writer_name, board.created_date, board.category, board.hit FROM board
+        SELECT board.id, board.title, board.content,  board.writer_name, board.writer_id,  board.created_date, board.category, board.hit FROM board
     </select>
     <insert id="insertBoard" useGeneratedKeys="true" keyProperty="id" parameterType="Board">
         INSERT INTO board ( title, content, writer_name, writer_id, created_date, category, hit)
