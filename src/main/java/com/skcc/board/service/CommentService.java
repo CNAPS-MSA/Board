@@ -7,5 +7,9 @@ import java.util.List;
 public interface CommentService {
 
     Comment registerComment(Comment comment);
-    List<Comment> findCommentByBoardId(Long boardId);
+    List<Comment> findCommentByBoardId(Long boardId, int pageNo, int pageSize);
+    void deleteComment(Long id);
+    Comment findCommentById(Long id);
+
+    Comment editComment(Comment comment);
 }

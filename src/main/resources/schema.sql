@@ -21,5 +21,5 @@ create table comment
     created_date varchar(50) not null,
     board_id bigint not null,
     foreign key (board_id) references board (id)
-
+    on delete cascade
 );

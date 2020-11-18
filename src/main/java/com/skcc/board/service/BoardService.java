@@ -19,7 +19,7 @@ public interface BoardService {
 
     Page<Board> findBoardsByCategory(int pageNo, int pageSize, Category category);
 
-
+    void deleteBoard(Long id);
 
 
 

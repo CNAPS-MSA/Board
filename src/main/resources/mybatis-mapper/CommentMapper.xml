@@ -5,7 +5,7 @@
 <mapper namespace="com.skcc.board.repository.CommentMapper">
     <insert id="insertComment" useGeneratedKeys="true" keyProperty="id" parameterType="Comment">
         INSERT INTO comment ( content, writer_name, writer_id, created_date, board_id)
-        VALUES (#{content}, #{writerName},#{writerId}, #{createdDate}, #{boardId})
+        VALUES (#{content}, #{writerName},#{writerId}, #{createdDate}, #{boardId});
     </insert>
     <select id="selectCommentByBoardId" resultType="Comment">
         SELECT comment.id, comment.content,comment.writer_id, comment.writer_name, comment.created_date, comment.board_id FROM comment
@@ -14,4 +14,10 @@
     <select id="selectCommentById" resultType="Comment">
         SELECT comment.id, comment.content, comment.writer_id, comment.writer_name, comment.created_date, comment.board_id FROM comment WHERE id = #{id}
     </select>
+    <delete id="deleteComment">
+        DELETE FROM comment where id=#{id}
+    </delete>
+    <update id="updateComment">
+        UPDATE comment SET comment.content =#{content} WHERE comment.id=#{id}
+    </update>
 </mapper>

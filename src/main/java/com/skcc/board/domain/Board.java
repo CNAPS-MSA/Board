@@ -3,7 +3,7 @@ package com.skcc.board.domain;
 import com.skcc.board.domain.enumeration.Category;
 import lombok.Data;
 
-import java.time.LocalDateTime;
+
 
 @Data
 public class Board {
@@ -12,7 +12,9 @@ public class Board {
     private String content;
     private String writerName;
     private Long writerId;
-    private LocalDateTime createdDate;
+    private String createdDate;
     private Category category;
     private int hit;
+    private int commentCnt;
+
 }

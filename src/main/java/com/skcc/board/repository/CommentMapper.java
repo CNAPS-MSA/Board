@@ -10,6 +10,8 @@ import java.util.List;
 @Repository
 public interface CommentMapper {
     void insertComment(Comment comment);
+    void updateComment(Comment comment);
     Comment selectCommentById(Long id);
     List<Comment> selectCommentByBoardId(Long boardId);
+    void deleteComment(Long id);
 }

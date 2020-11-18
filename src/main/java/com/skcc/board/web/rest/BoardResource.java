@@ -3,6 +3,7 @@ package com.skcc.board.web.rest;
 import com.github.pagehelper.Page;
 import com.skcc.board.domain.Board;
 import com.skcc.board.domain.enumeration.Category;
+import com.skcc.board.repository.BoardMapper;
 import com.skcc.board.service.BoardService;
 import com.skcc.board.web.rest.errors.BadRequestAlertException;
 
@@ -62,5 +63,25 @@ public class BoardResource {
         log.debug("REST request to find Book: {bookId}");
         List<Board> result = boardService.findBoardsByCategory(pageNo, pageSize,category);
         return ResponseEntity.ok().body(result);
+    }
+
+    @DeleteMapping("/board/{id}")
+    public ResponseEntity<Void> deleteBoard(@PathVariable Long id){
+        log.debug("REST request to delete board : {}", id);
+        boardService.deleteBoard(id);
+        return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString())).build();
+    }
+
+    @PutMapping("/board")
+    public ResponseEntity<Board> editBoard(@RequestBody Board board){
+        log.debug("REST request to update board:{}", board);
+        if(board.getId()== null){
+            throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
+        }
+        Board editBoard = boardService.editBoard(board);
+        return ResponseEntity.ok()
+            .headers(HeaderUtil.createEntityUpdateAlert(applicationName, true, ENTITY_NAME, editBoard.getId().toString())).body(editBoard);
+
+
     }
 }

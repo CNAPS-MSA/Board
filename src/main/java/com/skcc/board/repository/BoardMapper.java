@@ -15,4 +15,6 @@ public interface BoardMapper {
     void insertBoard(Board board);
     void updateBoard(Board board);
     Page<Board> selectBoardByCategory(Category category);
+    void deleteBoard(Long id);
+    void increaseHit(Long id);
 }
