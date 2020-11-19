@@ -13,5 +13,6 @@ public interface CommentMapper {
     void updateComment(Comment comment);
     Comment selectCommentById(Long id);
     List<Comment> selectCommentByBoardId(Long boardId);
+    List<Comment> findAll();
     void deleteComment(Long id);
 }

@@ -20,4 +20,7 @@
     <update id="updateComment">
         UPDATE comment SET comment.content =#{content} WHERE comment.id=#{id}
     </update>
+    <select id="findAll" resultType="Comment">
+        SELECT * FROM comment;
+    </select>
 </mapper>

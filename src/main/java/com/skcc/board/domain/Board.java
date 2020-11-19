@@ -15,6 +15,5 @@ public class Board {
     private String createdDate;
     private Category category;
     private int hit;
-    private int commentCnt;
 
 }

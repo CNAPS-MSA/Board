@@ -43,10 +43,10 @@ public class CommentResource {
             .body(result);
     }
 
-    @GetMapping("/comment/{boardId}")
-    public ResponseEntity<List<Comment>> findAllCommentByBoardId(@RequestParam(value = "page")int pageNo, @RequestParam(value = "size") int pageSize, @PathVariable Long boardId){
+    @GetMapping("/comment/board/{boardId}")
+    public ResponseEntity<List<Comment>> findAllCommentByBoardId( @PathVariable Long boardId){
         log.debug("REST request to find Comments");
-        List<Comment> commentList  = commentService.findCommentByBoardId( boardId, pageNo, pageSize);
+        List<Comment> commentList  = commentService.findCommentByBoardId( boardId);
         return ResponseEntity.ok().body(commentList);
     }
 

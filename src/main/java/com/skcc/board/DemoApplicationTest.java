@@ -32,6 +32,7 @@ public class DemoApplicationTest {
     private CommentService commentService;
 
     private Board board;
+    private Board board2;
     private Comment comment1;
 
     private Comment comment2;
@@ -49,6 +50,15 @@ public class DemoApplicationTest {
         board.setWriterId(1L);
         boardService.registerNewBoard(board);
 
+        board2 = new Board();
+        board2.setCategory(Category.NOTICE);
+        board2.setContent("test content");
+        board2.setHit(123);
+        board2.setTitle("test title");
+        board2.setWriterName("test writer");
+        board2.setWriterId(1L);
+        boardService.registerNewBoard(board2);
+
         comment1 = new Comment();
         comment1.setBoardId(board.getId());
         comment1.setContent("comment 1");
@@ -57,14 +67,14 @@ public class DemoApplicationTest {
         comment1=commentService.registerComment(comment1);
 
         comment2 = new Comment();
-        comment2.setBoardId(board.getId());
+        comment2.setBoardId(board2.getId());
         comment2.setContent("comment 2");
         comment2.setWriterId(3L);
         comment2.setWriterName("comment writer222");
         comment2= commentService.registerComment(comment2);
 
         comment3 = new Comment();
-        comment3.setBoardId(board.getId());
+        comment3.setBoardId(board2.getId());
         comment3.setContent("comment 3");
         comment3.setWriterId(4L);
         comment3.setWriterName("comment writer3333");
@@ -88,9 +98,10 @@ public class DemoApplicationTest {
 
     @Test
     public void commentTest(){
-        List<Comment> commentList = commentService.findCommentByBoardId(board.getId());
+        boardService.deleteBoard(board.getId());
+        List<Comment> commentList = commentService.findAll();
         for(Comment c:commentList){
-            System.out.println(c);
+            System.out.println("###"+c);
         }
     }
 

@@ -27,8 +27,8 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
-    public List<Comment> findCommentByBoardId( Long boardId, int pageNo, int pageSize) {
-        PageHelper.startPage(pageNo, pageSize);
+    public List<Comment> findCommentByBoardId( Long boardId) {
+
         return commentMapper.selectCommentByBoardId(boardId);
     }
 
@@ -40,6 +40,11 @@ public class CommentServiceImpl implements CommentService {
     @Override
     public Comment findCommentById(Long id) {
         return commentMapper.selectCommentById(id);
+    }
+
+    @Override
+    public List<Comment> findAll() {
+        return commentMapper.findAll();
     }
 
     @Override
