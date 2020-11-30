@@ -33,9 +33,9 @@ public class BoardResource {
 
     @PostMapping("/board")
     public ResponseEntity<Board> addNewBoard(@RequestBody Board board) throws URISyntaxException {
-        log.debug("REST request to save Book : {}", board);
+        log.debug("REST request to save board : {}", board);
         if (board.getId() != null) {
-            throw new BadRequestAlertException("A new book cannot already have an ID", ENTITY_NAME, "idexists");
+            throw new BadRequestAlertException("A new board cannot already have an ID", ENTITY_NAME, "idexists");
         }
         Board result = boardService.registerNewBoard(board);
 
@@ -46,21 +46,21 @@ public class BoardResource {
 
     @GetMapping("/board")
     public ResponseEntity<List<Board>> findAllBoard(@RequestParam(value = "page")int pageNo, @RequestParam(value = "size") int pageSize){
-        log.debug("REST request to find Books");
+        log.debug("REST request to find boards");
         List<Board> boards  = boardService.findAllBoard(pageNo, pageSize);
         return ResponseEntity.ok().body(boards);
     }
 
     @GetMapping("/board/{boardId}")
     public ResponseEntity<Board> findBoard(@PathVariable Long boardId){
-        log.debug("REST request to find Book: {bookId}");
+        log.debug("REST request to find board:  boardId}");
         Board board  = boardService.findBoardById(boardId);
         return ResponseEntity.ok().body(board);
     }
 
     @GetMapping("/board/category/{category}")
     public ResponseEntity<List<Board>> findBoardByCategory(@PathVariable("category") Category category, @RequestParam(value = "page")int pageNo, @RequestParam(value = "size") int pageSize ){
-        log.debug("REST request to find Book: {bookId}");
+        log.debug("REST request to find board:  boardId}");
         List<Board> result = boardService.findBoardsByCategory(pageNo, pageSize,category);
         return ResponseEntity.ok().body(result);
     }

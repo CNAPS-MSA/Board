@@ -60,7 +60,7 @@ public class CommentResource {
 
     @DeleteMapping("/comment/{id}")
     public ResponseEntity<Void> deleteComment(@PathVariable Long id){
-        log.debug("REST request to delete board : {}", id);
+        log.debug("REST request to delete comment : {}", id);
         commentService.deleteComment(id);
         return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString())).build();
     }
